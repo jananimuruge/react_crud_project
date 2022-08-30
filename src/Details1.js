@@ -244,7 +244,7 @@ onCellValueChanged=((e)=>{
     };
     if (isEmpty) {
       alert("fields cannot be empty");
-      return false;
+      return;
     }
     axios({
       // Endpoint to send files
