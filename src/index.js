@@ -12,25 +12,34 @@ import { Grid } from 'ag-grid-community';
 import NormalApi from './NormalApi';
 import PutApi from './PutApi';
 import GetApi from './GetApi';
+import AddUsers from './AddUsers';
 
 const routing= (
   <Router>
     <div>
         <div className='linkdetails'>
-          <Link to="/Details1">Details</Link>
-          <Link to="/Login" className='logout'>Login</Link>
+          <Link to="/Details1" style={{ textDecoration: 'none' }}>Details</Link>
+          <Link to="/Login" style={{ textDecoration: 'none' }} className='logout'>Login</Link>
+
           {/* <Link to="/api">api</Link> */}
           {/* <Link to="/put">put</Link> */}
+        </div>
+        <div>
+
+        {/* <Link to="/AddUsers" style={{ textDecoration: 'none' }}><div className="addUsers"><button type="button">AddUsers<i class="fa-regular fa-user-plus"></i></button></div></Link> */}
+
         </div>
         <Routes>
       <Route exact path="/Login" element={<Formex1/>}/>
       
       <Route path="/Details1" element={<Details1/>}/>
+      
+
 
       {/* <Route path="/api" element={<NormalApi/>}/> */}
       {/* <Route path='/put' element={<PutApi/>}/> */}
       </Routes>
-      
+      <Routes><Route path="/AddUsers" element={<AddUsers />} /></Routes>
       
     </div>
   </Router>

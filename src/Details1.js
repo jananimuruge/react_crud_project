@@ -23,10 +23,14 @@ import DisplayValues from "./DisplayValues";
 import Edit from "./Edit";
 import { GridApi, GridOptionsWrapper, RowNode } from "ag-grid-community";
 import CustomDateComponent from "./CustomeDateComponent";
-import _, { countBy, values } from 'lodash';
+import _, { values } from 'lodash';
 import NumericCellEditor from './NumericCellEditor.js';
 import NumericEditor from "./NumericCellEditor.js";
 import EmailV from "./EmailV";
+import { Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Link, NavLink, Switch, Route, Routes } from 'react-router-dom';
+import AddUsers from "./AddUsers";
+// import { withRouter } from "react-router";
 // import { toBeEmpty } from "@testing-library/jest-dom/dist/matchers";
 // import "path/to/font-awesome/less/font-awesome.less";
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -46,6 +50,7 @@ export class Details1 extends Component {
       number: "",
       // emailState:'',
       userdetails: [],
+
       rowData: [],
       details: [],
       updateRows: [],
@@ -60,13 +65,15 @@ export class Details1 extends Component {
               },
             },
             {
-              field: 'number', headerName: 'Number', cellStyle: { font: '21px' }, filter: 'agTextColumnFilter', editable: true, cellEditor: NumericEditor,headerClass: "ag-center-header", sortable: 'true', resizable: 'true', floatingFilter: 'true', filterParams: {
+              field: 'number', headerName: 'Number', cellStyle: { font: '21px' }, filter: 'agTextColumnFilter', editable: true, cellEditor: NumericEditor, headerClass: "ag-center-header", sortable: 'true', resizable: 'true', floatingFilter: 'true', filterParams: {
                 buttons: ['reset', 'apply'],
               }, closeOnApply: true,
             },
-            {field:'email',headerName:'Email',editable:true,cellStyle:{font:'21px'},filter: 'agTextColumnFilter', headerClass: "ag-center-header", sortable: 'true', resizable: 'true', floatingFilter: 'true', filterParams: {
-              buttons: ['reset', 'apply'],
-            },},
+            {
+              field: 'email', headerName: 'Email', editable: true, cellStyle: { font: '21px' }, filter: 'agTextColumnFilter', headerClass: "ag-center-header", sortable: 'true', resizable: 'true', floatingFilter: 'true', filterParams: {
+                buttons: ['reset', 'apply'],
+              },
+            },
             // cellRenderer: (params) => {
             //   params.eGridCell.addEventListener('change', (e) => {
             //       this.getDetails(e.target.value);
@@ -107,6 +114,8 @@ export class Details1 extends Component {
 
   }
   componentDidMount() {
+    const valuesGet=localStorage.getItem('enteredPageValues',this.saveValues)
+    console.log(valuesGet);
 
     axios({
       // Endpoint to get user details
@@ -119,13 +128,14 @@ export class Details1 extends Component {
         console.log(res)
         let userdetails = res.data.userdetails;
         this.setState({
-          rowData: userdetails
+          rowData: userdetails,
         })
 
       })
 
       // Catch errors if any
       .catch((err) => { });
+
 
   }
 
@@ -146,38 +156,32 @@ export class Details1 extends Component {
       e.filterInstance.getModelFromUi()
     );
   };
-//   onChange(e) {
-//     this.setState({
-//         email : e.target.value
-//     });
-// }
-// emailValidation(){
-//   const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-//   if(!this.state.email || regex.test(this.state.email) === false){
-//       this.setState({
-//           error: "Email is not valid"
-//       });
-//       return false;
-//   }
-//   return true;
-// }
+  //   onChange(e) {
+  //     this.setState({
+  //         email : e.target.value
+  //     });
+  // }
+  // emailValidation(){
+  //   const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  //   if(!this.state.email || regex.test(this.state.email) === false){
+  //       this.setState({
+  //           error: "Email is not valid"
+  //       });
+  //       return false;
+  //   }
+  //   return true;
+  // }
 
-onCellValueChanged=((e)=>{
-  console.log("onChange",e);
-  this.state.rowData.forEach(element => {
-    console.log("ele",element);
-    if(element.email===e.data.email){
-      alert("This email is already exist");
-      return;
-      
-    }
-    else{
-      this.saveValues();
-    }
-    
-  });
-
-})
+  onCellValueChanged(cellchange) {
+    console.log("onChange", cellchange);
+    localStorage.setItem("setvalues", JSON.stringify(cellchange.data))
+    // let emailList = _.uniq(_.map(this.state.rowData, 'email'));
+    // console.log(emailList)
+    // if (emailList.indexOf(cellchange.value) > -1) {
+    //   alert("email already exists.");
+    //   cellchange.value = "";
+    // }
+  }
 
   updateValues = () => {
     let userdetails = [];
@@ -220,11 +224,15 @@ onCellValueChanged=((e)=>{
       .catch((err) => { });
 
   }
+  Delete = (() => {
+    console.log("delete");
+    window.localStorage.removeItem('setvalues');
+  })
   saveValues = (e) => {
-  //   if(this.emailValidation()){
-  //     console.log(this.state);
-  //     this.setState(emailState);
-  // }
+    //   if(this.emailValidation()){
+    //     console.log(this.state);
+    //     this.setState(emailState);
+    // }
 
     var userdetails = [];
     let isEmpty = false;
@@ -232,13 +240,13 @@ onCellValueChanged=((e)=>{
       console.log(rowNode);
       // if(rowNode.data.email!=userdetails.email){
 
-        userdetails.push(rowNode.data);
-  
+      userdetails.push(rowNode.data);
       // }
       if (Object.keys(rowNode.data).length == 0) {
         isEmpty = true
       }
     })
+
     let totalObject = {
       "userdetails": userdetails
     };
@@ -258,21 +266,24 @@ onCellValueChanged=((e)=>{
       })
       // Catch errors if any
       .catch((err) => { });
+      const valuesGet=localStorage.getItem('enteredPageValues',this.saveValues)
+
   }
-// emailVerification=((params)=>{
-//   console.log(params,"emaildata");
+  // emailVerification=((params)=>{
+  //   console.log(params,"emaildata");
 
-//   return <input  type="text" value={params.data.email} onChange={(e)=>this.setEmailValue(e)}/>
+  //   return <input  type="text" value={params.data.email} onChange={(e)=>this.setEmailValue(e)}/>
 
-// })
-// setEmailValue=((e)=>{
-//   console.log(e,"emailvalues");
-  
-//   if(e.target.value)
-//   {
-//     console.log("please enter correct value");
-//   }
-// })
+  // })
+  // setEmailValue=((e)=>{
+  //   console.log(e,"emailvalues");
+
+  //   if(e.target.value)
+  //   {
+  //     console.log("please enter correct value");
+  //   }
+  // })
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.ColumnApi;
@@ -295,7 +306,9 @@ onCellValueChanged=((e)=>{
     console.log('cellEditingStopped');
   };
 
-
+// addUsers=(()=>{
+//   <AddUsers/>
+// })
   render() {
     const { date } = this.state;
     return (
@@ -305,7 +318,9 @@ onCellValueChanged=((e)=>{
             className="ag-theme-alpine"
             style={{
               marginTop: '20px',
-              height: '450px',
+              maxHeight: '500px',
+              // height: '100vh',
+              height: '500px',
               width: '100%',
             }}
           >
@@ -313,8 +328,10 @@ onCellValueChanged=((e)=>{
               <div className="addrowbutton"><button type="button" onClick={() => this.gridApi.applyTransaction({ add: [{}] })}>Add Field<i className="fa fa-plus" aria-hidden="true"></i></button></div>
               <div className="savebutton"><button type="button" onClick={(e) => this.saveValues(e)}>Save<i className="fa-solid fa-floppy-disk"></i></button></div>
               <div className="updatebutton"><button type="button" onClick={() => this.updateValues()}>Update<i className="fa fa-pencil" aria-hidden="true"></i></button></div>
+              {/* <diV className="deletebutton"><button type="button" onClick={()=>this.Delete()}>delete</button></diV> */}
+              <Link to="/AddUsers" style={{ textDecoration: 'none' }}><div className="addUsers"><button type="button">AddUsers<i class="fa-regular fa-user-plus"></i></button></div></Link>
             </div>
-
+          
             <AgGridReact
 
               columnDefs={this.state.columnDefs}
@@ -323,9 +340,9 @@ onCellValueChanged=((e)=>{
               components={this.state.components}
               rowStyle={rowStyle}
               getRowStyle={this.getRowStyle}
-              pagination={true}
-              paginationPageSize={3}
-              paginationAutoPageSize={true}
+              // pagination={true}
+              // paginationPageSize={3}
+              // paginationAutoPageSize={true}
               getRowId={this.getRowId}
               gridOptions={this.gridOptions}
               onFilterOpened={this.onFilterOpened.bind(this)}
@@ -370,7 +387,4 @@ const filterParams = {
 
 
 export default Details1;
-
-
-
 

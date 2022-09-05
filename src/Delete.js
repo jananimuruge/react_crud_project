@@ -19,7 +19,7 @@ export default class DeleteButton extends React.Component {
         // })
         let deletedRow = this.props.node.data;
         this.gridApi.updateRowData({ remove: [deletedRow] })
-
+      
         console.log(deletedRow);
 
         // axios.delete(`http://192.168.1.124:8080/user/delete?${this.state.username}`)
