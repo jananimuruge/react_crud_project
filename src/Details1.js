@@ -23,7 +23,7 @@ import DisplayValues from "./DisplayValues";
 import Edit from "./Edit";
 import { GridApi, GridOptionsWrapper, RowNode } from "ag-grid-community";
 import CustomDateComponent from "./CustomeDateComponent";
-import _, { values } from 'lodash';
+import _ from 'lodash';
 import NumericCellEditor from './NumericCellEditor.js';
 import NumericEditor from "./NumericCellEditor.js";
 import EmailV from "./EmailV";
@@ -114,8 +114,8 @@ export class Details1 extends Component {
 
   }
   componentDidMount() {
-    const valuesGet=localStorage.getItem('enteredPageValues',this.saveValues)
-    console.log(valuesGet);
+    const local=localStorage.getItem('enteredPageValues');
+    console.log(local);
 
     axios({
       // Endpoint to get user details
@@ -128,7 +128,7 @@ export class Details1 extends Component {
         console.log(res)
         let userdetails = res.data.userdetails;
         this.setState({
-          rowData: userdetails,
+          rowData: userdetails
         })
 
       })
@@ -266,8 +266,6 @@ export class Details1 extends Component {
       })
       // Catch errors if any
       .catch((err) => { });
-      const valuesGet=localStorage.getItem('enteredPageValues',this.saveValues)
-
   }
   // emailVerification=((params)=>{
   //   console.log(params,"emaildata");
@@ -329,7 +327,7 @@ export class Details1 extends Component {
               <div className="savebutton"><button type="button" onClick={(e) => this.saveValues(e)}>Save<i className="fa-solid fa-floppy-disk"></i></button></div>
               <div className="updatebutton"><button type="button" onClick={() => this.updateValues()}>Update<i className="fa fa-pencil" aria-hidden="true"></i></button></div>
               {/* <diV className="deletebutton"><button type="button" onClick={()=>this.Delete()}>delete</button></diV> */}
-              <Link to="/AddUsers" style={{ textDecoration: 'none' }}><div className="addUsers"><button type="button">AddUsers<i class="fa-regular fa-user-plus"></i></button></div></Link>
+              <Link to="/AddUsers" style={{ textDecoration: 'none' }}><div className="addUsers"><button type="button" onClick={()=>this.addUsers()}>AddUsers<i class="fa-regular fa-user-plus"></i></button></div></Link>
             </div>
           
             <AgGridReact

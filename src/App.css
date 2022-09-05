@@ -253,7 +253,18 @@ input::-webkit-inner-spin-button {
   gap: 2px;
   border-color: black;
 }
-.valuesUpdate input{
-  
+.saveandclose{
+  margin-top: 20px;
+display: flex;
+justify-content: end;
+gap: 30px;
+
+}
+.saveandclose button{
+  border-radius: 50px;
+  padding: 4px 4px 4px 4px;
+  border: none;
+  background-color:green;
+  color: azure;
 }
 
