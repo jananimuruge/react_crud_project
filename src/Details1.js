@@ -248,7 +248,8 @@ export class Details1 extends Component {
     })
 
     let totalObject = {
-      "userdetails": userdetails
+      "userdetails": userdetails,
+    
     };
     if (isEmpty) {
       alert("fields cannot be empty");
@@ -327,7 +328,7 @@ export class Details1 extends Component {
               <div className="savebutton"><button type="button" onClick={(e) => this.saveValues(e)}>Save<i className="fa-solid fa-floppy-disk"></i></button></div>
               <div className="updatebutton"><button type="button" onClick={() => this.updateValues()}>Update<i className="fa fa-pencil" aria-hidden="true"></i></button></div>
               {/* <diV className="deletebutton"><button type="button" onClick={()=>this.Delete()}>delete</button></diV> */}
-              <Link to="/AddUsers" style={{ textDecoration: 'none' }}><div className="addUsers"><button type="button" onClick={()=>this.addUsers()}>AddUsers<i class="fa-regular fa-user-plus"></i></button></div></Link>
+              <Link to="/AddUsers" style={{ textDecoration: 'none' }}><div className="addUsers"><button type="button" >AddUsers<i class="fa-regular fa-user-plus"></i></button></div></Link>
             </div>
           
             <AgGridReact

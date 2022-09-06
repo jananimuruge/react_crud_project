@@ -264,7 +264,55 @@ gap: 30px;
   border-radius: 50px;
   padding: 4px 4px 4px 4px;
   border: none;
-  background-color:green;
+  background-color:lightseagreen;
   color: azure;
 }
+.userDetails{
+  background-color:#4C57AC;
+  padding: 4px 4px 4px 4px;
+  color: azure;
+  gap:20px;
+}
+.name input{
+  border-radius: 50px;
+  padding: 4px 4px 4px 4px ;
+  width: 320px;
+  border: 1px solid grey;
+}
+.number2 input{
+  border-radius: 50px;
+  width: 320px;
+  padding: 2px 2px 2px 2px ;
+  border: 1px solid grey;
+}
+.email input{
+  border-radius: 50px;
+  padding: 4px 4px 4px 4px ;
+  width: 320px;
+  border: 1px solid grey;
+}
+.addUserTable input{
+  gap: 30px;
+}
+.addUserTable{
+  border:1px solid lightblue;
+  padding-bottom: 40px;
+  margin: 30px 30px 30px 30px;
+}
+.name input{
+  /* margin-left: 10px; */
+}
+/* .name label::after{
+  content: "*";
+  color: red;
+  margin-left: 2px;
+} */
 
+.react-inputs-validation__msg___pxv8o.react-inputs-validation__error___2aXSp, .react-inputs-validation__msg___pxv8o.react-inputs-validation__success___3TpwE {
+  margin-top: 2px;
+  font-size: 12px;
+  padding-left: 4px;
+}
+.react-inputs-validation__msg___pxv8o.react-inputs-validation__error___2aXSp {
+  color: #ff5a57;
+}
