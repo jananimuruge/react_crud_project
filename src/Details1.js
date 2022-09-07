@@ -36,10 +36,10 @@ import AddUsers from "./AddUsers";
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const rowStyle = { background: '#CCCFE7' };
-// const emailState={
-//   email:'',
-//   error:''
-// }
+const emailState={
+  email:'',
+  error:''
+}
 export class Details1 extends Component {
   constructor(props) {
     super(props);
@@ -113,9 +113,22 @@ export class Details1 extends Component {
 
 
   }
+      emailValidation() {
+        const regex = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if (!this.state.email || regex.test(this.state.email) === false) {
+            this.setState({
+                error: "Email is not valid"
+            });
+            return false;
+        }
+
+        return true;
+
+    }
+   
   componentDidMount() {
-    const local=localStorage.getItem('enteredPageValues');
-    console.log(local);
+    // const local=localStorage.getItem('enteredPageValues');
+    // console.log(local);
 
     axios({
       // Endpoint to get user details
@@ -135,6 +148,34 @@ export class Details1 extends Component {
 
       // Catch errors if any
       .catch((err) => { });
+    //   if (this.emailValidation()) {
+    //     console.log(this.state);
+    //     this.setState(emailState);
+
+
+    // }
+    // else {
+    //     alert("please enter valid email");
+    //     return;
+    // }
+    // axios({
+    //     // Endpoint to get user details
+    //     url: `http://localhost:8080/user/rest/api/user/validate-email?email=${this.state.email}`,
+    //     method: "GET",
+    //   })
+  
+    //     // Handle the response from backend here
+    //     .then((res) => {
+    //       console.log(res)
+    //       let emailValues = res.data.email;
+    //       this.setState({
+    //         rowData: emailValues
+    //       })
+  
+    //     })
+  
+    //     // Catch errors if any
+    //     .catch((err) => { });
 
 
   }

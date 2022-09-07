@@ -28,6 +28,7 @@ export default class DeleteButton extends React.Component {
         axios({
             // Endpoint to DELETE user
             url: `http://localhost:8080/user/delete?userId=${deletedRow.userId}`,
+            
             method: "DELETE"
         })
 
