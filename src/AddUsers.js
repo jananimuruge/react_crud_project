@@ -17,9 +17,6 @@ class AddUsers extends React.Component {
 
         }
     }
-
-
-
     handleFormValidation() {
         const { userName, email, number } = this.state;
         let formErrors = {};
@@ -48,9 +45,6 @@ class AddUsers extends React.Component {
             //     return false;
             // }   
         }
-
-
-
 
         //Phone number    
         if (!number) {
@@ -126,16 +120,16 @@ class AddUsers extends React.Component {
 
     render() {
         // const { emailError } = this.state;
-        const { userNameErr, emailErr, dobErr, genderErr, numberErr, cityErr } = this.state.formErrors;
+        const { userNameErr, emailErr, numberErr } = this.state.formErrors;
         return (
             <>
                 <div className="saveandclose"><button type="button" onClick={this.handleSubmit}>Save and Close <i className="fa-solid fa-floppy-disk"></i></button></div>
                 <div className="formDiv">
-
-                    <div>
-                        <form onSubmit={this.handleSubmit}>
-                            <div>
-                                <label htmlFor="userName">Name</label>
+                    <div className="addUserDetails">Add Users Details</div>
+                    <div >
+                        <form onSubmit={this.handleSubmit} className="totalInput">
+                            <div className="addname">
+                                <div><label htmlFor="userName">Name</label></div>
                                 <input type="text" name="userName"
                                     value={this.state.userName}
                                     onChange={this.handleChange}
@@ -148,20 +142,20 @@ class AddUsers extends React.Component {
                             </div>
 
 
-                            <div>
-                                <label htmlFor="number">Phone Number</label>
-                                <input type="text" name="number"
+                            <div className="addnumber">
+                            <div><label htmlFor="number">Number</label></div>
+                                <input type="number" name="number"
                                     onChange={this.handleChange}
                                     value={this.state.number}
-                                    placeholder="Your phone number.."
+                                    placeholder="Your number.."
                                     className={numberErr ? ' showError' : ''} />
                                 {numberErr &&
                                     <div style={{ color: "red", paddingBottom: 10 }}>{numberErr}</div>
                                 }
                             </div>
 
-                            <div>
-                                <label htmlFor="email">Email Id</label>
+                            <div className="addemail">
+                            <div><label htmlFor="email">Email Id</label></div>
                                 <input type="text" name="email"
                                     value={this.state.email}
                                     onChange={this.handleChange}

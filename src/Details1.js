@@ -36,17 +36,14 @@ import AddUsers from "./AddUsers";
 // import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const rowStyle = { background: '#CCCFE7' };
-const emailState={
-  email:'',
-  error:''
-}
+
 export class Details1 extends Component {
   constructor(props) {
     super(props);
     // this.state.emailState;
     // this.onChange = this.onChange.bind(this);
     this.state = {
-      username: "",
+      userName: "",
       number: "",
       // emailState:'',
       userdetails: [],
@@ -60,7 +57,7 @@ export class Details1 extends Component {
           headerName: "USERDETAILS", resizable: 'true',
           children: [
             {
-              field: 'username', className: "username", width: 350, suppressSizeToFit: true, headerName: 'User Name', autocomplete: "off", cellStyle: { font: '21px' }, filter: 'agTextColumnFilter', headerClass: "ag-center-header", sortable: 'true', editable: true, resizable: 'true', floatingFilter: 'true', filterParams: {
+              field: 'userName', className: "userName", width: 350, suppressSizeToFit: true, headerName: 'User Name', autocomplete: "off", cellStyle: { font: '21px' }, filter: 'agTextColumnFilter', headerClass: "ag-center-header", sortable: 'true', editable: true, resizable: 'true', floatingFilter: 'true', filterParams: {
                 buttons: ['reset', 'apply'],
               },
             },
@@ -127,8 +124,7 @@ export class Details1 extends Component {
     }
    
   componentDidMount() {
-    // const local=localStorage.getItem('enteredPageValues');
-    // console.log(local);
+
 
     axios({
       // Endpoint to get user details
@@ -148,34 +144,7 @@ export class Details1 extends Component {
 
       // Catch errors if any
       .catch((err) => { });
-    //   if (this.emailValidation()) {
-    //     console.log(this.state);
-    //     this.setState(emailState);
 
-
-    // }
-    // else {
-    //     alert("please enter valid email");
-    //     return;
-    // }
-    // axios({
-    //     // Endpoint to get user details
-    //     url: `http://localhost:8080/user/rest/api/user/validate-email?email=${this.state.email}`,
-    //     method: "GET",
-    //   })
-  
-    //     // Handle the response from backend here
-    //     .then((res) => {
-    //       console.log(res)
-    //       let emailValues = res.data.email;
-    //       this.setState({
-    //         rowData: emailValues
-    //       })
-  
-    //     })
-  
-    //     // Catch errors if any
-    //     .catch((err) => { });
 
 
   }
@@ -361,6 +330,7 @@ export class Details1 extends Component {
               maxHeight: '500px',
               // height: '100vh',
               height: '500px',
+              
               width: '100%',
             }}
           >

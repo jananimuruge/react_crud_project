@@ -207,12 +207,12 @@ input::-webkit-inner-spin-button {
   background-color:#228C22 ;
 }
 .savebutton button{
-  background-color:blueviolet;
+  background-color:blue ;
 
 }
 /* background-color: rgb(235, 135, 160); */
 .updatebutton button{
-  background-color:blue;
+  background-color:blueviolet;
   /* background-color:pink; */
   /* background-color: deepskyblue; */
 
@@ -230,7 +230,7 @@ input::-webkit-inner-spin-button {
   /* color:black; */
 }
 .addUsers button{
-  background-color:chocolate;
+  background-color:dodgerblue;
   padding: 4px 4px 4px 4px;
   border-radius: 30px;
   color: azure;
@@ -266,6 +266,7 @@ gap: 30px;
   border: none;
   background-color:lightseagreen;
   color: azure;
+  cursor: pointer;
 }
 .userDetails{
   background-color:#4C57AC;
@@ -273,19 +274,19 @@ gap: 30px;
   color: azure;
   gap:20px;
 }
-.name input{
+.addname input{
   border-radius: 50px;
   padding: 4px 4px 4px 4px ;
   width: 320px;
   border: 1px solid grey;
 }
-.number2 input{
+.addnumber input{
   border-radius: 50px;
   width: 320px;
-  padding: 2px 2px 2px 2px ;
+  padding: 1px 3px 1px 3px ;
   border: 1px solid grey;
 }
-.email input{
+.addemail input{
   border-radius: 50px;
   padding: 4px 4px 4px 4px ;
   width: 320px;
@@ -319,12 +320,12 @@ margin-top: 2px;
 
 /* form css*/
 .formDiv {    
-  padding: 21px;    
+  padding: 21px; 
    border-radius: 5px;    
    background-color: #f2f2f2;    
   }    
       
-  input[type=text], select     
+  /* input[type=text], select     
   {    
     width: 100%;    
     padding: 12px 20px;    
@@ -333,7 +334,7 @@ margin-top: 2px;
     border: 1px solid #ccc;    
     border-radius: 4px;    
     box-sizing: border-box;    
-  }    
+  }     */
       
   input[type=submit] {    
     width: 100%;    
@@ -353,4 +354,12 @@ margin-top: 2px;
     border-color: #a94442 !important;    
     color: #a94442 !important;    
     margin-bottom: 15px;    
+  }
+  .totalInput{
+    display: flex;
+    gap: 10px;
+  }
+  .addUserDetails{
+    background-color:#4C57AC;
+    color: azure;
   }

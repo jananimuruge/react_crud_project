@@ -13,7 +13,7 @@ export class Formex1 extends Component {
 
         super(props);
         this.state = {
-            username: "",
+            name: "",
             number: "",
             userdetail: [],
             
@@ -36,7 +36,7 @@ export class Formex1 extends Component {
         let currentdate = moment(date).format('MM-DD-YYYY H:MM:SS');
         let objectElements = {
             // "userId":this.state.userdetail,
-            "username": this.state.username,
+            "name": this.state.name,
             "number": this.state.number,
             // "currentdate": currentdate
         }
@@ -56,7 +56,7 @@ export class Formex1 extends Component {
 
     }
     render() {
-        const { username } = this.state;
+        const { user } = this.state;
         const { userdetail } = this.state;
 
         return (
@@ -68,7 +68,7 @@ export class Formex1 extends Component {
                         </div>
                         <div className='userclass'>
                             <div className="usericon"><i className="fa-solid fa-user"></i></div>
-                            <div><input type="text" className="username" name="username" placeholder="Username" onChange={(e) => { this.setState({ username: e.target.value }) }} /><br></br><br></br></div></div>
+                            <div><input type="text" className="username" name="name" placeholder="Username" onChange={(e) => { this.setState({ username: e.target.value }) }} /><br></br><br></br></div></div>
                         <div className='numberclass'>
                             <div className='numbericon'> <i className="fa-solid fa-lock"></i></div>
                             <div><input type="number" className="number" name="number" placeholder="Password" onChange={(e) => { this.setState({ number: e.target.value }) }} /><br></br><br></br></div></div>
